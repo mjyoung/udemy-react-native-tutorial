@@ -7,22 +7,17 @@ let Text = React.Text;
 let StyleSheet = React.StyleSheet;
 import DayItem from './src/DayItem.js';
 
-const DAYS = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday'
-];
-
 // Create a react component
 let Weekdays = React.createClass({
   days() {
-    return DAYS.map((day) => {
-      return <DayItem day={day} />;
-    });
+    var daysItems = [];
+    for (var i = 0; i < 7; i++) {
+      var day = Moment().add(i, 'days').format('dddd');
+      daysItems.push(
+        <DayItem day={day} daysUntil={i} />
+      );
+    }
+    return daysItems;
   },
 
   render() {
