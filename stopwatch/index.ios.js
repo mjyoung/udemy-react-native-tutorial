@@ -11,7 +11,8 @@ import FormatMSM from 'minutes-seconds-milliseconds';
 let StopWatch = React.createClass({
   getInitialState() {
     return {
-      timeElapsed: null
+      timeElapsed: null,
+      running: false
     }
   },
 
@@ -39,12 +40,13 @@ let StopWatch = React.createClass({
   },
 
   startStopButton() {
+    let buttonStyle = this.state.running ? styles.stopButton : styles.startButton;
     return <TouchableHighlight
       underlayColor="gray"
       onPress={this.handleStartPress}
-      style={[styles.button, styles.startButton]} >
+      style={[styles.button, buttonStyle]} >
       <Text>
-        Start
+        {this.state.running ? 'Stop' : 'Start'}
       </Text>
     </TouchableHighlight>
   },
@@ -61,13 +63,21 @@ let StopWatch = React.createClass({
   },
 
   handleStartPress() {
+    this.setState({
+      running: !this.state.running
+    });
+    if (!this.state.running) {
+      clearInterval(this.interval);
+    } else {
+      this.interval = setInterval(() => {
+        this.setState({
+          timeElapsed: new Date() - startTime
+        });
+      }, 30);
+    }
     let startTime = new Date();
 
-    setInterval(() => {
-      this.setState({
-        timeElapsed: new Date() - startTime
-      });
-    }, 30);
+
   },
 
   handleLapPress() {
@@ -109,7 +119,10 @@ let styles = StyleSheet.create({
     alignItems: 'center'
   },
   startButton: {
-    borderColor: '#00cc00'
+    borderColor: 'green'
+  },
+  stopButton: {
+    borderColor: 'red'
   },
   lapButton: {
 
