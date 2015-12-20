@@ -17,19 +17,19 @@ let StopWatch = React.createClass({
 
   render() {
     return <View style={styles.container}>
-      <View style={[styles.header, this.border('yellow')]}>
-        <View style={[styles.timerWrapper, this.border('red')]}>
-          <Text>
+      <View style={styles.header}>
+        <View style={styles.timerWrapper}>
+          <Text style={styles.timer}>
             {FormatMSM(this.state.timeElapsed)}
           </Text>
         </View>
-        <View style={[styles.buttonWrapper, this.border('green')]}>
+        <View style={styles.buttonWrapper}>
           {this.startStopButton()}
           {this.lapButton()}
         </View>
       </View>
 
-      <View style={[styles.footer, this.border('blue')]}>
+      <View style={styles.footer}>
         <Text>
           I am a list of laps
         </Text>
@@ -41,7 +41,8 @@ let StopWatch = React.createClass({
   startStopButton() {
     return <TouchableHighlight
       underlayColor="gray"
-      onPress={this.handleStartPress} >
+      onPress={this.handleStartPress}
+      style={[styles.button, styles.startButton]} >
       <Text>
         Start
       </Text>
@@ -49,7 +50,10 @@ let StopWatch = React.createClass({
   },
 
   lapButton() {
-    return <TouchableHighlight underlayColor="gray">
+    return <TouchableHighlight
+      underlayColor="gray"
+      onPress={this.handleLapPress}
+      style={styles.button} >
       <Text>
         Lap
       </Text>
@@ -68,13 +72,6 @@ let StopWatch = React.createClass({
 
   handleLapPress() {
 
-  },
-
-  border(color) {
-    return {
-      borderColor: color,
-      borderWidth: 4
-    }
   }
 });
 
@@ -99,6 +96,23 @@ let styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  timer: {
+    fontSize: 60
+  },
+  button: {
+    borderWidth: 2,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  startButton: {
+    borderColor: '#00cc00'
+  },
+  lapButton: {
+
   }
 });
 
