@@ -41,11 +41,11 @@ let StopWatch = React.createClass({
 
   laps() {
     return this.state.laps.map((lap, index) => {
-      return <View>
-        <Text>
+      return <View style={styles.lap} key={index}>
+        <Text style={styles.lapText}>
           Lap #{index+1}
         </Text>
-        <Text>
+        <Text style={styles.lapText}>
           {FormatMSM(lap)}
         </Text>
       </View>
@@ -139,8 +139,12 @@ let styles = StyleSheet.create({
   stopButton: {
     borderColor: 'red'
   },
-  lapButton: {
-
+  lap: {
+    justifyContent: 'space-around',
+    flexDirection: 'row'
+  },
+  lapText: {
+    fontSize: 30
   }
 });
 
