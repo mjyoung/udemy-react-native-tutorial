@@ -12,7 +12,8 @@ let StopWatch = React.createClass({
   getInitialState() {
     return {
       timeElapsed: null,
-      running: false
+      running: false,
+      startTime: null
     }
   },
 
@@ -64,24 +65,24 @@ let StopWatch = React.createClass({
 
   handleStartPress() {
     this.setState({
-      running: !this.state.running
+      running: !this.state.running,
+      startTime: new Date()
     });
     if (!this.state.running) {
       clearInterval(this.interval);
     } else {
       this.interval = setInterval(() => {
         this.setState({
-          timeElapsed: new Date() - startTime
+          timeElapsed: new Date() - this.state.startTime
         });
       }, 30);
     }
-    let startTime = new Date();
-
-
   },
 
   handleLapPress() {
-
+    this.setState({
+      startTime: new Date()
+    });
   }
 });
 
