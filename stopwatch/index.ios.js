@@ -6,6 +6,7 @@ let {
   AppRegistry,
   StyleSheet
 } = React;
+import FormatMSM from 'minutes-seconds-milliseconds';
 
 let StopWatch = React.createClass({
   getInitialState() {
@@ -19,7 +20,7 @@ let StopWatch = React.createClass({
       <View style={[styles.header, this.border('yellow')]}>
         <View style={[styles.timerWrapper, this.border('red')]}>
           <Text>
-            {this.state.timeElapsed}
+            {FormatMSM(this.state.timeElapsed)}
           </Text>
         </View>
         <View style={[styles.buttonWrapper, this.border('green')]}>
@@ -57,10 +58,12 @@ let StopWatch = React.createClass({
 
   handleStartPress() {
     let startTime = new Date();
-    
-    this.setState({
-      timeElapsed: new Date() - startTime
-    });
+
+    setInterval(() => {
+      this.setState({
+        timeElapsed: new Date() - startTime
+      });
+    }, 30);
   },
 
   handleLapPress() {
