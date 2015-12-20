@@ -1,5 +1,6 @@
 // Import some code we need
 import React from 'react-native';
+import Moment from 'moment';
 let AppRegistry = React.AppRegistry;
 let View = React.View;
 let Text = React.Text;
@@ -26,9 +27,6 @@ let Weekdays = React.createClass({
 
   render() {
     return <View style={styles.container}>
-      <Text>
-        Days of the week:
-      </Text>
       {this.days()}
     </View>
   }
