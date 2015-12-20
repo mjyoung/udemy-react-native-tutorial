@@ -8,12 +8,18 @@ let {
 } = React;
 
 let StopWatch = React.createClass({
+  getInitialState() {
+    return {
+      timeElapsed: null
+    }
+  },
+
   render() {
     return <View style={styles.container}>
       <View style={[styles.header, this.border('yellow')]}>
         <View style={[styles.timerWrapper, this.border('red')]}>
           <Text>
-            00:00.00
+            {this.state.timeElapsed}
           </Text>
         </View>
         <View style={[styles.buttonWrapper, this.border('green')]}>
@@ -30,15 +36,17 @@ let StopWatch = React.createClass({
 
     </View>
   },
+
   startStopButton() {
     return <TouchableHighlight
       underlayColor="gray"
-      onPress={this.handleStartPress}>
+      onPress={this.handleStartPress} >
       <Text>
         Start
       </Text>
     </TouchableHighlight>
   },
+
   lapButton() {
     return <TouchableHighlight underlayColor="gray">
       <Text>
@@ -46,12 +54,19 @@ let StopWatch = React.createClass({
       </Text>
     </TouchableHighlight>
   },
+
   handleStartPress() {
-    console.info('start was pressed');
+    let startTime = new Date();
+    
+    this.setState({
+      timeElapsed: new Date() - startTime
+    });
   },
+
   handleLapPress() {
 
   },
+
   border(color) {
     return {
       borderColor: color,
