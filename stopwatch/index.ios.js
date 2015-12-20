@@ -3,13 +3,31 @@ let {
   Text,
   View,
   AppRegistry
-  } = React;
+} = React;
 
 let StopWatch = React.createClass({
   render() {
-    return <Text>
-      Hi.
-    </Text>
+    return <View>
+      <Text>
+        00:00.00
+      </Text>
+      {this.startStopButton()}
+      {this.lapButton()}
+    </View>
+  },
+  startStopButton() {
+    return <View>
+      <Text>
+        Start
+      </Text>
+    </View>
+  },
+  lapButton() {
+    return <View>
+      <Text>
+        Lap
+      </Text>
+    </View>
   }
 });
 
