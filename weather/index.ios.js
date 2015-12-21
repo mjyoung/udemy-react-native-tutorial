@@ -8,8 +8,14 @@ let {
 
 let Weather = React.createClass({
   render() {
-    return <MapView style={styles.map}>
+    return <MapView
+      onRegionChangeComplete={this.onRegionChangeComplete}
+      style={styles.map}>
     </MapView>
+  },
+
+  onRegionChangeComplete(region) {
+    console.log(region);
   }
 
 });
