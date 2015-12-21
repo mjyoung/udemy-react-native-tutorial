@@ -6,13 +6,13 @@ const kelvinToF = (kelvin) => {
 
 module.exports = (latitude, longitude) => {
   let url = `${rootUrl}&lat=${latitude}&lon=${longitude}`;
-  fetch(url)
-  .then((response) => {
+  return fetch(url)
+    .then((response) => {
       return response.json();
     })
-  .then((json) => {
+    .then((json) => {
       return {
-        city: json.city,
+        city: json.name,
         temperature: kelvinToF(json.main.temp),
         description: json.weather[0].description
       };

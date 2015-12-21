@@ -5,6 +5,7 @@ let {
   View,
   StyleSheet
 } = React;
+import Api from './src/api';
 
 let Weather = React.createClass({
   getInitialState() {
@@ -12,7 +13,10 @@ let Weather = React.createClass({
       pin: {
         longitude: 0,
         latitude: 0
-      }
+      },
+      city: '',
+      temperature: '',
+      description: ''
     };
   },
   render() {
@@ -24,13 +28,22 @@ let Weather = React.createClass({
   },
 
   onRegionChangeComplete(region) {
-    console.log(region);
     this.setState({
       pin: {
         longitude: region.longitude,
         latitude: region.latitude
       }
     })
+
+    Api(region.latitude, region.longitude)
+    .then((data) => {
+        console.log(data);
+        this.setState({
+          city: data.city,
+          temperature: data.temperature,
+          description: data.description
+        });
+      });
   }
 
 });
