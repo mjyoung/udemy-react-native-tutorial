@@ -8,7 +8,12 @@ let {
 
 let Weather = React.createClass({
   render() {
+    let pins = [{
+      latitude: 37,
+      longitude: -95
+    }];
     return <MapView
+      annotations={pins}
       onRegionChangeComplete={this.onRegionChangeComplete}
       style={styles.map}>
     </MapView>
