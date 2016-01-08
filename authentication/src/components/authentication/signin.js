@@ -2,22 +2,21 @@ import React from 'react-native';
 let {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TextInput
 } = React;
-
-var Signin = require('./components/authentication/signin');
 
 module.exports = React.createClass({
   render() {
     return (
       <View style={styles.container}>
-        <Signin />
+        <Text>Sign In</Text>
       </View>
-    )
+    );
   }
 });
 
-let styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
